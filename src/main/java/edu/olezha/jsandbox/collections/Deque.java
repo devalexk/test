@@ -8,12 +8,12 @@ import java.util.ArrayDeque;
 public class Deque {
 
     public static void main(String[] args) {
-        ArrayDeque<String> deque = new ArrayDeque<>();
+        java.util.Deque<String> deque = new ArrayDeque<>();
 
         for (int i = 0; i <= 10; i++) {
             String e = "E" + i;
-            System.out.println(e);
             deque.push(e);
+            System.out.println(deque);
         }
 
         System.out.println("--------------");
