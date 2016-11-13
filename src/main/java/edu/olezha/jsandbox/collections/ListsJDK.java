@@ -8,7 +8,7 @@ import java.util.*;
 public class ListsJDK {
 
     public static void main(String[] args) {
-        final int limit = (int) 10e2;
+        final int limit = (int) 1e3;
 
         List<Object> list = new ArrayList<>();
 
@@ -21,6 +21,7 @@ public class ListsJDK {
         List<Object> linkedList = new LinkedList<>();
         linkedList.addAll(arrayList);
 
+        System.out.println("Time");
         System.out.println("[Iterator.remove()] arrayListTime: " + iteratingOverListAndRemove(arrayList)
                 + "; linkedListTime: " + iteratingOverListAndRemove(linkedList));
 
@@ -90,7 +91,7 @@ public class ListsJDK {
 
         @SuppressWarnings("unchecked")
         List<String> shortList = (List<String>)(List<?>) list.subList(0, 15);
-        System.out.println("\n" + shortList);
+        System.out.println("\nCompare\n" + shortList);
         Collections.sort(shortList, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
