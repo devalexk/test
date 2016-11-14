@@ -1,4 +1,4 @@
-package edu.olezha.jsandbox.java8interface;
+package edu.olezha.jsandbox.java8.intf;
 
 import org.junit.Test;
 
