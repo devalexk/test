@@ -3,11 +3,11 @@ package edu.olezha.jsandbox.redBlackTree;
 import lombok.Data;
 
 @Data
-public class Node {
+public class Node<T> {
     
-    private int value;
+    private T value;
     private NodeColor color;
-    private Node leftNode;
-    private Node rightNode;
+    private Node<T> leftNode;
+    private Node<T> rightNode;
 
 }

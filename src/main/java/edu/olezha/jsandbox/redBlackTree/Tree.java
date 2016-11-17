@@ -3,12 +3,12 @@ package edu.olezha.jsandbox.redBlackTree;
 import lombok.Data;
 
 @Data
-public class Tree {
+public class Tree<T> {
     
-    private Node root;
+    private Node<T> root;
     
-    public void add(int value) {
-        Node node = new Node();
+    public void add(T value) {
+        Node<T> node = new Node<T>();
         node.setValue(value);
         node.setColor(NodeColor.RED);
         
@@ -18,14 +18,14 @@ public class Tree {
             return;
         }
         
-        Node currentNode = root, newParentNode = null;
+        Node<T> currentNode = root, newParentNode = null;
         
         while (currentNode != null) {
-            if (node.getValue() > currentNode.getValue()) {
+            if (node.getValue().hashCode() > currentNode.getValue().hashCode()) {
                 if (currentNode.getRightNode() == null)
                     newParentNode = currentNode;
                 currentNode = currentNode.getRightNode();
-            } else if (node.getValue() < currentNode.getValue()) {
+            } else if (node.getValue().hashCode() < currentNode.getValue().hashCode()) {
                 if (currentNode.getLeftNode() == null)
                     newParentNode = currentNode;
                 currentNode = currentNode.getLeftNode();
@@ -38,9 +38,9 @@ public class Tree {
             }
         }
         
-        if (node.getValue() > newParentNode.getValue())
+        if (node.getValue().hashCode() > newParentNode.getValue().hashCode())
             newParentNode.setRightNode(node);
-        else if (node.getValue() < newParentNode.getValue())
+        else if (node.getValue().hashCode() < newParentNode.getValue().hashCode())
             newParentNode.setLeftNode(node);
         else if (newParentNode.getRightNode() == null)
             newParentNode.setRightNode(node);
