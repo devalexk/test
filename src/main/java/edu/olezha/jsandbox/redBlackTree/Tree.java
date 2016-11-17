@@ -10,11 +10,11 @@ public class Tree {
     public void add(int value) {
         Node node = new Node();
         node.setValue(value);
-        node.setColor("red");
+        node.setColor(NodeColor.RED);
         
         if (root == null) {
             root = node;
-            node.setColor("black");
+            node.setColor(NodeColor.BLACK);
             return;
         }
         
@@ -47,7 +47,7 @@ public class Tree {
         else
             newParentNode.setLeftNode(node);
         
-        if ("red".equals(newParentNode.getColor()))
+        if (NodeColor.RED.equals(newParentNode.getColor()))
             balancing();
     }
     

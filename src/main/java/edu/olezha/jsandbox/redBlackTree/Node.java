@@ -6,7 +6,7 @@ import lombok.Data;
 public class Node {
     
     private int value;
-    private String color;
+    private NodeColor color;
     private Node leftNode;
     private Node rightNode;
 
