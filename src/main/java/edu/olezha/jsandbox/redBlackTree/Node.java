@@ -1,13 +1,14 @@
 package edu.olezha.jsandbox.redBlackTree;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString(exclude = "parentNode")
 public class Node<T> {
     
     private T value;
     private NodeColor color;
-    private Node<T> leftNode;
-    private Node<T> rightNode;
+    private Node<T> leftNode, rightNode, parentNode;
 
 }

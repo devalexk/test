@@ -18,39 +18,57 @@ public class Tree<T> {
             return;
         }
         
-        Node<T> currentNode = root, newParentNode = null;
+        Node<T> currentNode = root;
         
         while (currentNode != null) {
             if (node.getValue().hashCode() > currentNode.getValue().hashCode()) {
                 if (currentNode.getRightNode() == null)
-                    newParentNode = currentNode;
+                    node.setParentNode(currentNode);
                 currentNode = currentNode.getRightNode();
             } else if (node.getValue().hashCode() < currentNode.getValue().hashCode()) {
                 if (currentNode.getLeftNode() == null)
-                    newParentNode = currentNode;
+                    node.setParentNode(currentNode);
                 currentNode = currentNode.getLeftNode();
             } else {
                 if (currentNode.getRightNode() == null || currentNode.getLeftNode() == null) {
-                    newParentNode = currentNode;
+                    node.setParentNode(currentNode);
                     currentNode = null;
                 } else
-                    currentNode = currentNode.getRightNode();
+                    currentNode = currentNode.getLeftNode();
             }
         }
         
-        if (node.getValue().hashCode() > newParentNode.getValue().hashCode())
-            newParentNode.setRightNode(node);
-        else if (node.getValue().hashCode() < newParentNode.getValue().hashCode())
-            newParentNode.setLeftNode(node);
-        else if (newParentNode.getRightNode() == null)
-            newParentNode.setRightNode(node);
+        if (node.getValue().hashCode() > node.getParentNode().getValue().hashCode())
+            node.getParentNode().setRightNode(node);
+        else if (node.getValue().hashCode() < node.getParentNode().getValue().hashCode())
+            node.getParentNode().setLeftNode(node);
+        else if (node.getParentNode().getLeftNode() == null)
+            node.getParentNode().setLeftNode(node);
         else
-            newParentNode.setLeftNode(node);
+            node.getParentNode().setRightNode(node);
         
-        if (NodeColor.RED.equals(newParentNode.getColor()))
-            balancing();
+        if (NodeColor.RED.equals(node.getParentNode().getColor()))
+            balancing(node.getParentNode());
     }
     
-    private void balancing() {}
+    private void balancing(Node<T> node) {
+        if (NodeColor.BLACK.equals(node.getColor()))
+            return;
+        
+        if (node.getParentNode().getLeftNode() == null
+                || NodeColor.BLACK.equals(node.getParentNode().getLeftNode().getColor())) {
+            //TODO rotate left
+        } else if (node.getParentNode().getRightNode() == null
+                || NodeColor.BLACK.equals(node.getParentNode().getRightNode().getColor())) {
+            //TODO rotate right
+        } else if (node.getParentNode().getLeftNode().getColor().equals(node.getParentNode().getRightNode().getColor())) {
+            //TODO repaint
+            
+            if (root.equals(node.getParentNode()))
+                root.setColor(NodeColor.BLACK);
+            else if (NodeColor.RED.equals(node.getParentNode().getParentNode().getColor()))
+                balancing(node.getParentNode().getParentNode());
+        }
+    }
 
 }
