@@ -3,7 +3,7 @@ package edu.olezha.jsandbox.redBlackTree;
 public class Main {
 
     public static void main(String[] args) {
-        Tree<Integer> tree = new Tree<Integer>();
+        Tree<Integer> tree = new Tree<>();
         tree.add(3);
         System.out.println(tree);
         tree.add(1);
