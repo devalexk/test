@@ -13,7 +13,6 @@ public class Tree {
     public static void main(String[] args) throws IllegalAccessException {
         TreeSet<Employee> employees = new TreeSet<>(new Tree.EmployeeComparator());
         employees.add(new Tree.Employee("Oleh", 1500));
-        employees.add(new Tree.Employee("Oleh", 1500));
         employees.add(new Tree.Employee("Michael", 1600));
         employees.add(new Tree.Employee("Paul", 1400));
         employees.add(new Tree.Employee("Mark", 1550));
@@ -22,7 +21,7 @@ public class Tree {
         employees.add(new Tree.Employee("Henry", 1450));
         employees.add(new Tree.Employee("Terry", 1650));
         employees.add(new Tree.Employee("Gerald", 1700));
-        employees.add(new Tree.Employee("Eugene", 1750));
+        employees.add(new Tree.Employee("Eugene", 1300));
         
         System.out.println(employees + "\n");
         
@@ -59,11 +58,7 @@ public class Tree {
         
         @Override
         public int compare(Employee o1, Employee o2) {
-            if (o1.getSalary() > o2.getSalary())
-                return 1;
-            else
-                return -1;
-//            return o1.getSalary() - o2.getSalary();
+            return o1.getSalary() - o2.getSalary();
         }
         
     }
