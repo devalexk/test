@@ -29,7 +29,7 @@ public class SingletonsTest {
         assertSame(oneSingleton, otherSingleton);
     }
     
-    @Ignore
+//    @Ignore
     @Test
     public void testConcurrentSimpleSingleton() throws InterruptedException, ExecutionException {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
