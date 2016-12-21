@@ -9,6 +9,8 @@ public class BigDecimalMain {
         BigDecimal price = BigDecimal.valueOf(priceKop, 2);
         
         System.out.println(price);
+        
+        System.out.println(price.movePointRight(2).intValue());
     }
 
 }
