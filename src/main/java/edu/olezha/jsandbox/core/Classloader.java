@@ -1,4 +1,4 @@
-package edu.olezha.jsandbox;
+package edu.olezha.jsandbox.core;
 
 /*
 * JVM -verbose:class
@@ -12,7 +12,7 @@ public class Classloader {
         ClassLoader contextClassloader = Thread.currentThread().getContextClassLoader();
         System.out.println("Context Classloader: " + contextClassloader);
 
-        currentClassloader.loadClass("edu.olezha.jsandbox.math.Str");
+        currentClassloader.loadClass("edu.olezha.jsandbox.core.NewString");
     }
 
 }

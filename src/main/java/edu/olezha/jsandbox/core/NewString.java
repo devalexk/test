@@ -1,6 +1,6 @@
-package edu.olezha.jsandbox.math;
+package edu.olezha.jsandbox.core;
 
-public class Str {
+public class NewString {
 
     public static void main(String[] args) {
         String firstString = "ABC";

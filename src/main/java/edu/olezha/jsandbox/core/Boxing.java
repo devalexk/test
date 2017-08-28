@@ -1,4 +1,4 @@
-package edu.olezha.jsandbox.math;
+package edu.olezha.jsandbox.core;
 
 public class Boxing {
 
