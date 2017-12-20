@@ -48,7 +48,8 @@ public class Lambda {
 
         Random random = new Random();
         Collections.sort(list, (o1, o2) -> {
-            return random.nextBoolean() ? 1 : -1;
+            int plusMinus = random.nextBoolean() ? 1 : -1;
+            return random.nextBoolean() ? plusMinus : 0;
         });
         log.info("{}", list);
     }
