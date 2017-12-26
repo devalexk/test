@@ -1,4 +1,4 @@
-package edu.olezha.jsandbox.core;
+package edu.olezha.jsandbox.core.io;
 
 import lombok.extern.slf4j.Slf4j;
 
