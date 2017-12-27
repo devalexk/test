@@ -26,7 +26,7 @@ public class MainOS {
             }
         };
 
-        byte[] in = new byte[]{1, 2, 3, 4, 5};
+        byte[] in = {1, 2, 3, 4, 5};
 
         outputStream.write(in);
 
@@ -41,7 +41,8 @@ public class MainOS {
         assertEquals(
                 "[1, 2, 3, 4, 5, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
                 Arrays.toString(data));
-
-        // TODO ~1h
+        assertEquals(25, (byte) 12312345);
     }
+
+    // TODO ~1h
 }

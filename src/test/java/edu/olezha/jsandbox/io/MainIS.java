@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class MainIS {
 
-    private byte[] data = new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    private byte[] data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     private InputStream newInputStream() {
         return new InputStream() {
@@ -34,7 +34,9 @@ public class MainIS {
     private InputStream newMarkedInputStream() {
         return new InputStream() {
             int index = 0;
-            int mark = 0, readingLimitAfterMarking = 0, readingCounterAfterMarking = 0;
+            int mark = 0,
+                    readingLimitAfterMarking = 0,
+                    readingCounterAfterMarking = 0;
             boolean marked = false;
 
             @Override
@@ -66,11 +68,16 @@ public class MainIS {
                 readingCounterAfterMarking++;
                 return data[index++];
             }
+
+            @Override
+            public int available() throws IOException {
+                return data.length - index;
+            }
         };
     }
 
     @Test
-    public void testISAbstraction() throws IOException {
+    public void testIS() throws IOException {
         InputStream inputStream = newInputStream();
 
         byte[] out = new byte[3];
@@ -85,11 +92,13 @@ public class MainIS {
         count = inputStream.read(out);
         assertEquals("[9, 10, 0, 0, 0]", Arrays.toString(out));
         assertEquals(2, count);
+    }
 
+    @Test
+    public void testISOffset() throws IOException {
+        InputStream inputStream = newInputStream();
 
-        inputStream = newInputStream();
-
-        out = new byte[10];
+        byte[] out = new byte[10];
         inputStream.read(out, 3, 3);
         assertEquals("[0, 0, 0, 1, 2, 3, 0, 0, 0, 0]", Arrays.toString(out));
         Arrays.fill(out, (byte) 123);
@@ -97,11 +106,13 @@ public class MainIS {
         assertEquals("[123, 123, 123, 4, 5, 6, 123, 123, 123, 123]", Arrays.toString(out));
 
         assertEquals(4, inputStream.available());
+    }
 
+    @Test
+    public void testMarkedIS() throws IOException {
+        InputStream inputStream = newMarkedInputStream();
 
-        inputStream = newMarkedInputStream();
-
-        out = new byte[3];
+        byte[] out = new byte[3];
         byte[] out2 = new byte[3];
         inputStream.read(out);
         inputStream.mark(0);
@@ -111,5 +122,28 @@ public class MainIS {
         inputStream.reset();
         inputStream.read(out2);
         assertEquals(Arrays.toString(out), Arrays.toString(out2));
+    }
+
+    @Test
+    public void testMarkedISAvailable() throws IOException {
+        InputStream inputStream = newMarkedInputStream();
+
+        inputStream.read(new byte[5]);
+        inputStream.mark(0);
+        inputStream.read(new byte[4]);
+
+        assertEquals(1, inputStream.available());
+        inputStream.reset();
+        assertEquals(5, inputStream.available());
+    }
+
+    @Test(expected = IOException.class)
+    public void testMarkedISLimit() throws IOException {
+        InputStream inputStream = newMarkedInputStream();
+
+        inputStream.mark(1);
+        inputStream.read(new byte[5]);
+        assertEquals(5, inputStream.available());
+        inputStream.reset();
     }
 }
