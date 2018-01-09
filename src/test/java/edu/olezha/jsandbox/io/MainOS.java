@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class MainOS {
 
     @Test
-    public void testOSAbstraction() throws IOException {
+    public void testOS() throws IOException {
 
         byte[] data = new byte[20];
 
@@ -42,7 +42,12 @@ public class MainOS {
                 "[1, 2, 3, 4, 5, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
                 Arrays.toString(data));
         assertEquals(25, (byte) 12312345);
+
+        outputStream.write(in, 2, 2);
+        assertEquals(
+                "[1, 2, 3, 4, 5, 25, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+                Arrays.toString(data));
     }
 
-    // TODO ~1h
+    // TODO ~1.2h
 }
