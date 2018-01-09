@@ -13,4 +13,11 @@ public class Person {
     private Long id;
     private String name;
     private BigDecimal rate;
+
+    public Person() {}
+
+    public Person(String name, BigDecimal rate) {
+        this.name = name;
+        this.rate = rate;
+    }
 }
