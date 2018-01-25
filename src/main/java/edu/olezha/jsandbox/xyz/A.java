@@ -10,7 +10,7 @@ public class A {
     }
 
     public static class C {
-        public static String Z = "life is pain";
+        public static String Z = "life is plain";
     }
 
     public static void main(String[] args) {
