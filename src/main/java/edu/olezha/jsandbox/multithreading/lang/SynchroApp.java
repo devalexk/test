@@ -60,14 +60,14 @@ public class SynchroApp {
         // если присвоенное значение volatile переменной зависит от её текущего значения
         // (например, во время операции инкремента), то нужно использовать синхронизацию,
         // если вы хотите, чтобы операция была потокобезопасной.
-        // Или использовать volatile + java.util.concurrent.atomic.Atomic-ANY-FieldUpdater
+        // Или использовать volatile + java.utilDate.concurrent.atomic.Atomic-ANY-FieldUpdater
         //
         // Доступ к volatile полю окружен data memory barrier'ом,
         // что гарантирует упорядоченность операций чтения-записи памяти относительно доступа к этому полю.
         // Иначе компилятор или сам процессор вправе переупорядочивать инструкции (out-of-order execution).
 
         // Когда вам требуется примитивный тип, выполняющий операции инкремента и декремента,
-        // гораздо лучше выбрать его среди новых атомарных классов в пакете java.util.concurrent.atomic,
+        // гораздо лучше выбрать его среди новых атомарных классов в пакете java.utilDate.concurrent.atomic,
         // чем писать synchronized блок самому.
         // AtomicInteger, AtomicBoolean, AtomicLong, AtomicIntegerArray...
     }

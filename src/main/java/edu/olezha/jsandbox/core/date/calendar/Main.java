@@ -3,7 +3,6 @@ package edu.olezha.jsandbox.core.date.calendar;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Calendar;
-import java.util.Locale;
 
 @Slf4j
 public class Main {
