@@ -1,6 +1,6 @@
 package edu.olezha.jsandbox.java8;
 
-import edu.olezha.jsandbox.core.Person;
+import edu.olezha.jsandbox.model.Person;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;

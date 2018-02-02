@@ -1,4 +1,4 @@
-package edu.olezha.jsandbox.core;
+package edu.olezha.jsandbox.model;
 
 import lombok.Data;
 
