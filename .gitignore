@@ -3,6 +3,7 @@
 *.war
 *.ear
 *.iml
+*.db
 .metadata
 .project
 .classpath
