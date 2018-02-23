@@ -1,4 +1,4 @@
-package edu.olezha.jsandbox.java8.intf.diamond.inheritance;
+package edu.olezha.jsandbox.java8.intf.diamond_inheritance;
 
 public class L3 implements L2a, L2b {
 

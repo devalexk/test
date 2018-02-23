@@ -1,4 +1,4 @@
-package edu.olezha.jsandbox.java8.intf.diamond.inheritance;
+package edu.olezha.jsandbox.java8.intf.diamond_inheritance;
 
 public interface L2a extends L1 {
 
