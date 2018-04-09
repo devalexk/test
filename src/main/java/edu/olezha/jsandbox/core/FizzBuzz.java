@@ -10,7 +10,15 @@ package edu.olezha.jsandbox.core;
 public class FizzBuzz {
 
     public static void main(String[] args) {
-        for (int i = 1; i <= 100; i++) {
+        fizzBuzzV1(1, 100);
+        fizzBuzzCorrect(1, 100);
+    }
+
+    /**
+     * v1
+     */
+    private static void fizzBuzzV1(int from, int to) {
+        for (int i = from; i <= to; i++) {
             if (i % 3 == 0) {
                 if (i % 5 == 0) {
                     System.out.println("FizzBuzz");
@@ -24,6 +32,32 @@ public class FizzBuzz {
                 continue;
             }
             System.out.println(i);
+        }
+    }
+
+    /**
+     * (http://wiki.c2.com/?FizzBuzzTest)
+     */
+    private static void fizzBuzzCorrect(int from, int to) {
+        boolean flag = true;
+
+        for (int i = from; i <= to; i++) {
+            if (i % 3 == 0) {
+                System.out.print("Fizz");
+                flag = false;
+            }
+
+            if (i % 5 == 0) {
+                System.out.print("Buzz");
+                flag = false;
+            }
+
+            if (flag)
+                System.out.print(i);
+
+            System.out.println("");
+
+            flag = true;
         }
     }
 }
