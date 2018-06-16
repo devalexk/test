@@ -39,6 +39,8 @@ public class MultiplyLong {
             y >>>= 1;
         }
 
-        return new BigInteger(Long.toBinaryString(highHalf) + Long.toBinaryString(lowHalf), 2);
+        return new BigInteger(Long.toBinaryString(highHalf)
+                + String.format("%32s", Long.toBinaryString(lowHalf)).replace(' ', '0'),
+                2);
     }
 }
