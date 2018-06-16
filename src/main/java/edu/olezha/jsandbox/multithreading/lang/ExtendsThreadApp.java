@@ -20,11 +20,19 @@ public class ExtendsThreadApp {
         System.out.println(System.currentTimeMillis() + " start with multithreading");
 
         for (int i = 0; i < 10; i++) {
+            /*
+             * TODO: remember this situation
+             */
             ExtendsThreadSingleProcess extendsThreadSingleProcess = new ExtendsThreadSingleProcess(i);
+            extendsThreadSingleProcess.setPriority(i % 4);
             extendsThreadSingleProcess.start();
+            System.out.println("finish starting threads");
         }
 
         System.out.println(System.currentTimeMillis() + " finish with multithreading");
+
+        Thread anonimProcess = new Thread(() -> System.out.println(123));
+        anonimProcess.start();
     }
 
 }
