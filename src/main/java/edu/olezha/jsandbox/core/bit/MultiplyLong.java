@@ -9,20 +9,34 @@ public class MultiplyLong {
         System.out.println(x + " * " + y + "  = " + multiply(x, y));
         System.out.println("BigInteger.multiply               = "
                 + BigInteger.valueOf(x).multiply(BigInteger.valueOf(y)));
+
+        System.out.println();
+
+        x = 428380349403380L;
+        y = 412272392551456L;
+        BigInteger res1 = multiply(x, y);
+        System.out.println(x + " * " + y + "  = " + res1 + " " + res1.toString(2));
+        BigInteger res2 = BigInteger.valueOf(x).multiply(BigInteger.valueOf(y));
+        System.out.println("BigInteger.multiply                = "
+                + res2 + " " + res2.toString(2));
     }
 
     /**
      * for non-negative operands
      */
     public static BigInteger multiply(long x, long y) {
-        System.out.println(Long.toBinaryString(x) + "  *  " + Long.toBinaryString(y));
+        System.out.println(String.format("%64s", Long.toBinaryString(x)).replace(' ', '0') + "  *  "
+                + String.format("%64s", Long.toBinaryString(y)).replace(' ', '0'));
 
         final long x_hi = x >>> 32;
         final long y_hi = y >>> 32;
         final long x_lo = x & 0xFFFFFFFFL;
         final long y_lo = y & 0xFFFFFFFFL;
-        System.out.println(Long.toBinaryString(x_hi) + " " + Long.toBinaryString(x_lo)
-                + " *  " + Long.toBinaryString(y_hi) + "   " + Long.toBinaryString(y_lo));
+        System.out.println(String.format("%32s", Long.toBinaryString(x_hi)).replace(' ', '0') + " "
+                + String.format("%32s", Long.toBinaryString(x_lo)).replace(' ', '0')
+                + " *  "
+                + String.format("%32s", Long.toBinaryString(y_hi)).replace(' ', '0') + " "
+                + String.format("%32s", Long.toBinaryString(y_lo)).replace(' ', '0'));
 
         long highHalf = x_lo * y_lo;
         highHalf >>>= 32;
@@ -39,8 +53,10 @@ public class MultiplyLong {
             y >>>= 1;
         }
 
+        System.out.println(highHalf + " " + lowHalf);
+
         return new BigInteger(Long.toBinaryString(highHalf)
-                + String.format("%32s", Long.toBinaryString(lowHalf)).replace(' ', '0'),
+                + String.format("%64s", Long.toBinaryString(lowHalf)).replace(' ', '0'),
                 2);
     }
 }
