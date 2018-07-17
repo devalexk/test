@@ -10,6 +10,10 @@ import java.util.Map;
 public class GetOnSet {
 
     public static void main(String[] args) {
+        /*
+         * The behavior of a set/map is not specified if the value of an object is changed
+         * in a manner that affects equals comparisons while the object is a key in the set/map.
+         */
         Map<KV, KV> kvKvSet = new HashMap<KV, KV>() {{
             for (Long i = 0L; i < 20; i++) {
                 KV kv = new KV(i, i.toString() + "k", i, i.toString() + "v");

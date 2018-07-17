@@ -40,7 +40,7 @@ class Person {
     private String name;
     private BigDecimal sum;
 
-    public Person(Long id, String name) {
+    Person(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -49,7 +49,6 @@ class Person {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        if (!super.equals(object)) return false;
 
         Person a = (Person) object;
 
