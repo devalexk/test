@@ -12,14 +12,14 @@ public class EqualsAndHashcode {
 
     public static void main(String[] args) {
         /*
-         * Note: great care must be exercised if mutable objects are used as map
-         * keys.  The behavior of a map is not specified if the value of an object is
-         * changed in a manner that affects <tt>equals</tt> comparisons while the
-         * object is a key in the map.  A special case of this prohibition is that it
-         * is not permissible for a map to contain itself as a key.  While it is
-         * permissible for a map to contain itself as a value, extreme caution is
-         * advised: the <tt>equals</tt> and <tt>hashCode</tt> methods are no longer
-         * well defined on such a map.
+         * Note: great care must be exercised if mutable objects are used as map keys.
+         * The behavior of a map is not specified
+         * if the value of an object is changed _in a manner that affects_
+         * equals comparisons while the object is a key in the map.
+         *
+         * A special case of this prohibition is that it is not permissible for a map to contain itself as a key.
+         * While it is permissible for a map to contain itself as a value,
+         * extreme caution is advised: the equals and hashCode methods are no longer well defined on such a map.
          */
         Map<Person, String> names = new HashMap<>();
 
