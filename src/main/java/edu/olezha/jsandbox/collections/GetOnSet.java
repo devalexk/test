@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class GetOnSet {
@@ -32,95 +33,82 @@ public class GetOnSet {
 
         SetWithGet<KV> setWithGet = new SetWithGet<KV>() {
 
-            private Set<KV> set = new HashSet<>();
+            private Map<KV, KV> map = new HashMap<>();
 
             @Override
             public KV get(KV kv) {
-                if (!set.contains(kv)) return null;
-
-                for (KV e : set) {
-                    if (e.equals(kv))
-                        return e;
-                }
-                return null;
+                return map.get(kv);
             }
 
             @Override
             public KV put(KV kv) {
-                if (set.contains(kv)) {
-                    KV result = get(kv);
-                    set.add(kv);
-                    return result;
-                }
-                else {
-                    set.add(kv);
-                    return null;
-                }
+                return map.put(kv, kv);
             }
 
             @Override
             public int size() {
-                return set.size();
+                return map.size();
             }
 
             @Override
             public boolean isEmpty() {
-                return set.isEmpty();
+                return map.isEmpty();
             }
 
             @Override
             public boolean contains(Object o) {
-                return set.contains(o);
+                return map.containsKey(o);
             }
 
             @Override
             public Iterator<KV> iterator() {
-                return set.iterator();
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public Object[] toArray() {
-                return set.toArray();
+                return map.values().toArray();
             }
 
             @Override
             public <T> T[] toArray(T[] a) {
-                return set.toArray(a);
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public boolean add(KV kv) {
-                return set.add(kv);
+                return map.put(kv, kv) != null;
             }
 
             @Override
             public boolean remove(Object o) {
-                return set.remove(o);
+                return map.remove(o) != null;
             }
 
             @Override
             public boolean containsAll(Collection<?> c) {
-                return set.containsAll(c);
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public boolean addAll(Collection<? extends KV> c) {
-                return set.addAll(c);
+                map.putAll(c.stream().collect(Collectors.toMap(i -> i, i -> i)));
+                return true;
             }
 
             @Override
             public boolean retainAll(Collection<?> c) {
-                return set.retainAll(c);
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public boolean removeAll(Collection<?> c) {
-                return set.removeAll(c);
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public void clear() {
-                set.clear();
+                map.clear();
             }
 
             {
