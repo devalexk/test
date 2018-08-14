@@ -3,7 +3,8 @@ package edu.olezha.jsandbox.gof.bridge.logger;
 class Main {
 
     public static void main(String[] args) {
-        Logger logger = new ConsoleLogger();
-        logger.log("hi there");
+        new ConsoleLogger().log("hi there");
+        new FileLogger().log("hi there");
+        new SocketLogger().log("hi there");
     }
 }
