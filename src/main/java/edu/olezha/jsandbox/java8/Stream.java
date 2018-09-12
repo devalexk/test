@@ -17,22 +17,28 @@ public class Stream {
 
     public static void main(String[] args) {
         List<Person> persons = new ArrayList<>();
-        for (int i = 0; i < 10; i++)
-            persons.add(new Person("Name" + i, new BigDecimal(15 + i)));
+        java.util.stream.Stream
+                .iterate(0, i -> i + 1)
+                .limit(10)
+                .forEach(i ->
+                        persons.add(new Person("Name" + i, new BigDecimal(15 + i))));
         log.info("{}", persons);
 
-        List<BigDecimal> interastedRates = persons.parallelStream()
-                .map(p -> p.getRate())
+        List<BigDecimal> interestedRates = persons.parallelStream()
+                .map(p -> {
+                    log.info("{}", p);
+                    return p.getRate();
+                })
                 .filter(r -> r.compareTo(new BigDecimal(18)) > 0)
                 .collect(Collectors.toList());
-        log.info("{}", interastedRates);
-        interastedRates.parallelStream()
+        log.info("{}", interestedRates);
+        interestedRates.parallelStream()
                 .forEach(new MyPrint());
 
         System.out.println();
 
         persons.parallelStream()
-                .map(p -> p.getRate())
+                .map(Person::getRate)
                 .filter(r -> r.compareTo(new BigDecimal(18)) > 0)
                 .forEach(r -> System.out.print(r + " "));
     }

@@ -31,18 +31,23 @@ public class FunctionalInterface {
                 (rate, days) -> hospitalRate
                         .multiply(rate.multiply(new BigDecimal(days * 8)))
                         .setScale(2, RoundingMode.HALF_UP));
+
+        aPayroll.processHospital(person, 3,
+                (rate, days) -> hospitalRate
+                        .multiply(rate.multiply(new BigDecimal(days * 8)))
+                        .setScale(2, RoundingMode.HALF_UP));
     }
 
-    public void processOvertime(Person person, BigDecimal hours,
-                                BiFunction<BigDecimal, BigDecimal, BigDecimal> function) {
+    private void processOvertime(Person person, BigDecimal hours,
+                                 BiFunction<BigDecimal, BigDecimal, BigDecimal> function) {
         BigDecimal sum = function.apply(person.getRate(), hours);
         // Save to Repo
         // Send email ..
         log.info("Overtime sum: {}", sum);
     }
 
-    public void processHospital(Person person, Integer days,
-                                BiFunction<BigDecimal, Integer, BigDecimal> function) {
+    private void processHospital(Person person, Integer days,
+                                 BiFunction<BigDecimal, Integer, BigDecimal> function) {
         BigDecimal sum = function.apply(person.getRate(), days);
         // ...
         log.info("Hospital sum: {}", sum);
