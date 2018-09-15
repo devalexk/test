@@ -23,7 +23,7 @@ class Consumer implements Runnable {
     public void run() {
         while (!stop.get()) {
             try {
-                final String p = queue.poll(100, TimeUnit.MILLISECONDS);
+                final String p = queue.poll(10, TimeUnit.MILLISECONDS);
                 if (p == null) continue;
                 System.out.println("q: " + queue.size() + "; v: " + p);
                 if (queue.size() > 500)
