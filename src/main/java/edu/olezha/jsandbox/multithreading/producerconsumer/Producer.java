@@ -13,19 +13,19 @@ class Producer implements Runnable {
     Producer(final BlockingQueue<String> queue, final AtomicBoolean stop) {
         this.queue = queue;
         this.stop = stop;
-        System.out.println("Producer");
     }
 
     @Override
     public void run() {
+        System.out.println("Producer start");
         while (!stop.get()) {
-            IntStream.range(0, 10).forEach(i -> {
+            System.out.println(queue.size());
+            IntStream.range(0, 100).forEach(i -> {
                 if (!stop.get()) {
-                    System.out.print(i + " ");
                     queue.add("abc" + i);
                 }
             });
-            System.out.println("producer finish next 10");
         }
+        System.out.println("Producer finish");
     }
 }

@@ -6,28 +6,23 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Main implements AnswerConsumer {
+public class Main {
 
     private static AtomicBoolean stop = new AtomicBoolean(false);
 
     public static void main(String[] args) {
-        final Main main = new Main();
-        final BlockingQueue<String> queue = new LinkedBlockingQueue<>();
-        int consumerCounter = 0;
-
         ExecutorService executorService = Executors.newCachedThreadPool();
+        final BlockingQueue<String> queue = new LinkedBlockingQueue<>();
 
         executorService.submit(new Producer(queue, stop));
-        executorService.submit(new Consumer(queue, stop, ++consumerCounter, main));
+        executorService.submit(new Consumer(queue, stop, Main::found));
 
-        while (!stop.get()) {
+        while (!stop.get())
             if (queue.size() > 400)
-                executorService.submit(new Consumer(queue, stop, ++consumerCounter, main));
-        }
+                executorService.submit(new Consumer(queue, stop, Main::found));
     }
 
-    @Override
-    public void found(String answer) {
+    private static void found(String answer) {
         stop.set(true);
         System.out.println("answer: " + answer);
     }
