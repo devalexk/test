@@ -17,7 +17,6 @@ class Producer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Producer start");
         while (!stop.get()) {
             System.out.println(queue.size());
             IntStream.range(0, 100).forEach(i -> {
@@ -26,6 +25,5 @@ class Producer implements Runnable {
                 }
             });
         }
-        System.out.println("Producer finish");
     }
 }

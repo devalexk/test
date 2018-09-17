@@ -20,7 +20,6 @@ class Consumer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Consumer start");
         while (!stop.get()) {
             try {
                 final String item = queue.poll(1, TimeUnit.MILLISECONDS);
@@ -30,6 +29,5 @@ class Consumer implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("Consumer finish");
     }
 }

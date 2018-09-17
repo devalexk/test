@@ -20,6 +20,8 @@ public class Main {
         while (!stop.get())
             if (queue.size() > 400)
                 executorService.submit(new Consumer(queue, stop, Main::found));
+
+        executorService.shutdown();
     }
 
     private static void found(String answer) {
