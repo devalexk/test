@@ -8,19 +8,19 @@ class Consumer implements Runnable {
 
     private final BlockingQueue<String> queue;
 
-    private final AtomicBoolean stop;
+    private final AtomicBoolean flag;
 
     private final AnswerConsumer answerConsumer;
 
-    Consumer(final BlockingQueue<String> queue, final AtomicBoolean stop, final AnswerConsumer answerConsumer) {
+    Consumer(final BlockingQueue<String> queue, final AtomicBoolean flag, final AnswerConsumer answerConsumer) {
         this.queue = queue;
-        this.stop = stop;
+        this.flag = flag;
         this.answerConsumer = answerConsumer;
     }
 
     @Override
     public void run() {
-        while (!stop.get()) {
+        while (flag.get()) {
             try {
                 final String item = queue.poll(1, TimeUnit.MILLISECONDS);
                 if (queue.size() > 1_000)

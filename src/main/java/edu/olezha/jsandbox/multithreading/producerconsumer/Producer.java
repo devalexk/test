@@ -8,19 +8,19 @@ class Producer implements Runnable {
 
     private final BlockingQueue<String> queue;
 
-    private final AtomicBoolean stop;
+    private final AtomicBoolean flag;
 
-    Producer(final BlockingQueue<String> queue, final AtomicBoolean stop) {
+    Producer(final BlockingQueue<String> queue, final AtomicBoolean flag) {
         this.queue = queue;
-        this.stop = stop;
+        this.flag = flag;
     }
 
     @Override
     public void run() {
-        while (!stop.get()) {
-            System.out.println(queue.size());
+        while (flag.get()) {
+            System.out.println("queue.size: " + queue.size());
             IntStream.range(0, 100).forEach(i -> {
-                if (!stop.get()) {
+                if (flag.get()) {
                     queue.add("abc" + i);
                 }
             });
