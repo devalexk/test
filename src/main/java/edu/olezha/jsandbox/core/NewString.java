@@ -17,6 +17,8 @@ public class NewString {
         secondString = partOfSecondString1 + partOfSecondString2; // probably it uses StringBuilder javap -c -verbose NewString
         System.out.println("str from two part: " + (firstString == secondString));
 
+        System.out.println("AB + C == ABC: " + ("AB" + "C" == "ABC"));
+
         //docs.oracle.com/javase/specs/jls/se9/html/jls-15.html#jls-15.18.1
         final String partOfSecondString3 = "BC";
         final String partOfSecondString4 = "D";
