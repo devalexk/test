@@ -65,6 +65,11 @@
             <artifactId>cliche</artifactId>
             <version>110413</version>
         </dependency>
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>63.1</version>
+        </dependency>
     </dependencies>
     
 </project>
