@@ -9,6 +9,8 @@
 .classpath
 .settings/
 .idea/
+.factorypath
+.vscode/
 target/
 log/
 bin/

@@ -55,8 +55,8 @@ public class Stream {
         groupsByRate.forEach((rate, person) -> log.info("rate {}: {}", rate, person));
 
         log.info("avg rate: {}",
-                persons.stream().collect(Collectors.averagingInt(p -> p.getRate().intValue())));
-        log.info("{}", persons.stream().collect(Collectors.summarizingInt(p -> p.getRate().intValue())));
+                persons.stream().collect(Collectors.averagingInt(p -> p.getRate().intValue())).toString());
+        log.info("{}", persons.stream().collect(Collectors.summarizingInt(p -> p.getRate().intValue())).toString());
 
         log.info("{}",
                 persons.stream()
