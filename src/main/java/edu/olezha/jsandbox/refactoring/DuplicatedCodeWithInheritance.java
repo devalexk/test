@@ -24,14 +24,6 @@ class B extends A {
 
 public class DuplicatedCodeWithInheritance {
 
-    public List<A> processA() {
-        return process(true);
-    }
-
-    public List<B> processB() {
-        return process(false);
-    }
-
     private List process(boolean isA) {
         List list = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -45,6 +37,14 @@ public class DuplicatedCodeWithInheritance {
             }
         }
         return list;
+    }
+
+    public List<A> processA() {
+        return process(true);
+    }
+
+    public List<B> processB() {
+        return process(false);
     }
 
     private String get(int i) {
