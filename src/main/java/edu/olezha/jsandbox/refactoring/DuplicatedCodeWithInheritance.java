@@ -25,17 +25,24 @@ class B extends A {
 public class DuplicatedCodeWithInheritance {
 
     public List<A> processA() {
-        List<A> list = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            list.add(new A(get(i)));
-        }
-        return list;
+        return process(true);
     }
 
     public List<B> processB() {
-        List<B> list = new ArrayList<>();
+        return process(false);
+    }
+
+    private List process(boolean isA) {
+        List list = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            list.add(new B(get(i), get(i)));
+            String some = get(i);
+
+            if (isA) {
+                list.add(new A(some));
+            } else {
+                String other = get(i);
+                list.add(new B(some, other));
+            }
         }
         return list;
     }
